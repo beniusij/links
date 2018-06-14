@@ -17,7 +17,17 @@ Route::get('/', function () {
     return view('welcome', ['links' => $links]);
 });
 
-Route::get('/submit', function () {
+use Illuminate\Http\Request;
+
+Route::get('/submit', function (Request $request) {
+    $data = $request->validate([
+        'title' => 'required|max:255',
+        'url' => 'required|url|max:255',
+        'description' => 'required|max:255',
+    ]);
+
+    $link = tap(new App\Link($data))->save();
+
    return view('submit');
 });
 
