@@ -1,9 +1,9 @@
 @extends('layouts.app')
 @section('content')
     <div class="container">
-        <div class="row">
-            <h1>Submit a link</h1>
-            <form action="/submit" method="post">
+        <div class="col-md-6 offset-3">
+            <h1 class="text-center">Submit a link</h1>
+            <form action="/submit" method="post" class="">
                 @if ($errors->any())
                     <div class="alert alert-danger" role="alert">
                         Please fix the following errors
@@ -13,7 +13,7 @@
                 {!! csrf_field() !!}
                 <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
                     <label for="title">Title</label>
-                    <input type="text" class="form-control" id="title" placeholder="Title" value="{{ old('title') }}">
+                    <input type="text" name="title" class="form-control" id="title" placeholder="Title" value="{{ old('title') }}">
                     @if($errors->has('title'))
                         <span class="help-block">{{ $errors->first('title') }}</span>
                     @endif

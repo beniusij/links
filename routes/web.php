@@ -13,6 +13,11 @@
 
 use Illuminate\Http\Request;
 
+Route::get('/edit', function()
+{
+   return View::make('submit');
+});
+
 Route::post('/submit', function (Request $request) {
     $data = $request->validate([
         'title' => 'required|max:255',
